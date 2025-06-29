@@ -40,6 +40,7 @@ const ChatbotWidget: React.FC = () => {
   const [audioTranscription, setAudioTranscription] = useState('');
   const [mediaPreview, setMediaPreview] = useState<string | null>(null);
   const [mediaType, setMediaType] = useState<'image' | 'video' | 'file' | 'screen' | null>(null);
+  const [hasAudioInput, setHasAudioInput] = useState<boolean | null>(null);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -53,6 +54,7 @@ const ChatbotWidget: React.FC = () => {
   useEffect(() => {
     if (isOpen) {
       scrollToBottom();
+      checkAudioInputAvailability();
     }
   }, [messages, isOpen]);
 
@@ -135,6 +137,23 @@ const ChatbotWidget: React.FC = () => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
     return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+  };
+
+  // Check if audio input devices are available
+  const checkAudioInputAvailability = async () => {
+    try {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+        setHasAudioInput(false);
+        return;
+      }
+
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const audioInputDevices = devices.filter(device => device.kind === 'audioinput');
+      setHasAudioInput(audioInputDevices.length > 0);
+    } catch (error) {
+      console.error('Error checking audio input availability:', error);
+      setHasAudioInput(false);
+    }
   };
 
   // Camera functions
@@ -254,7 +273,29 @@ const ChatbotWidget: React.FC = () => {
   // Voice recording functions
   const startVoiceRecording = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      // First check if audio input devices are available
+      if (hasAudioInput === false) {
+        setIsRecordingVoice(false);
+        alert('No microphone found. Please connect a microphone and try again.');
+        return;
+      }
+
+      // Check if getUserMedia is supported
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        setIsRecordingVoice(false);
+        alert('Voice recording is not supported by your browser.');
+        return;
+      }
+
+      // Try to get audio stream
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true
+        }
+      });
+      
       streamRef.current = stream;
       
       // Initialize MediaRecorder
@@ -288,7 +329,17 @@ const ChatbotWidget: React.FC = () => {
     } catch (error) {
       console.error('Error starting voice recording:', error);
       setIsRecordingVoice(false);
-      alert('Could not access microphone. Please check your permissions.');
+      
+      // Provide more specific error messages
+      if (error.name === 'NotFoundError' || error.message.includes('Requested device not found')) {
+        alert('No microphone found. Please connect a microphone and refresh the page to try again.');
+      } else if (error.name === 'NotAllowedError') {
+        alert('Microphone access denied. Please allow microphone access in your browser settings and try again.');
+      } else if (error.name === 'NotReadableError') {
+        alert('Microphone is already in use by another application. Please close other applications using the microphone and try again.');
+      } else {
+        alert('Could not access microphone. Please check your microphone connection and browser permissions.');
+      }
     }
   };
 
@@ -303,6 +354,15 @@ const ChatbotWidget: React.FC = () => {
       streamRef.current.getTracks().forEach(track => track.stop());
       streamRef.current = null;
     }
+  };
+
+  const handleVoiceRecordingClick = () => {
+    if (hasAudioInput === false) {
+      alert('No microphone found. Please connect a microphone and refresh the page to enable voice recording.');
+      return;
+    }
+    
+    setIsRecordingVoice(!isRecordingVoice);
   };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -781,10 +841,11 @@ const ChatbotWidget: React.FC = () => {
           
           <button 
             className={`p-2 rounded-lg hover:bg-gray-200 transition-colors flex flex-col items-center ${
-              isRecordingVoice ? 'text-error-500' : 'text-gray-600'
+              isRecordingVoice ? 'text-error-500' : hasAudioInput === false ? 'text-gray-400 cursor-not-allowed' : 'text-gray-600'
             }`}
-            onClick={() => setIsRecordingVoice(!isRecordingVoice)}
-            title="Record voice"
+            onClick={handleVoiceRecordingClick}
+            disabled={hasAudioInput === false}
+            title={hasAudioInput === false ? 'No microphone available' : 'Record voice'}
           >
             <Mic className="h-5 w-5" />
             <span className="text-xs mt-1">Voice</span>
@@ -899,10 +960,15 @@ const ChatbotWidget: React.FC = () => {
             
             <button
               type="button"
-              onClick={() => setIsRecordingVoice(!isRecordingVoice)}
+              onClick={handleVoiceRecordingClick}
+              disabled={hasAudioInput === false}
               className={`p-2 rounded-full ${isRecordingVoice 
                 ? 'bg-error-500 text-white hover:bg-error-600' 
-                : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`}
+                : (hasAudioInput === false 
+                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
+                  : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                )}`}
+              title={hasAudioInput === false ? 'No microphone available' : 'Record voice'}
             >
               <Mic className="h-5 w-5" />
             </button>
