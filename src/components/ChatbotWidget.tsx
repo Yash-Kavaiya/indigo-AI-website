@@ -532,7 +532,7 @@ const ChatbotWidget: React.FC = () => {
       </button>
 
       {/* Chat Window */}
-      <div className={`fixed bottom-20 right-6 w-96 rounded-2xl shadow-elevation-4 bg-white overflow-hidden z-50 transition-all duration-300 transform ${
+      <div className={`fixed bottom-20 right-6 w-[500px] max-w-[95vw] rounded-2xl shadow-elevation-4 bg-white overflow-hidden z-50 transition-all duration-300 transform ${
         isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'
       }`}>
         {/* Header */}
