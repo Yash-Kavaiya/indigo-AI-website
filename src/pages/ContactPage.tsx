@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import { 
-  ArrowLeft, MessageSquare, Mail, Phone, MapPin, 
-  Clock, Globe, Send, ArrowRight, HelpCircle, 
-  Plane, Hotel, Car, CreditCard, User, Shield, 
-  Linkedin, GitHub, Instagram, Twitter
-} from 'lucide-react';
+import { ArrowLeft, MessageSquare, Mail, Phone, MapPin, Clock, Globe, Send, ArrowRight, HelpCircle, Plane, Hotel, Car, CreditCard, User, Shield, Linkedin, Github as GitHub, Instagram, Twitter } from 'lucide-react';
 
 interface ContactPageProps {
   onNavigateHome: () => void;
