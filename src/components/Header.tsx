@@ -4,7 +4,7 @@ import {
   MapPin, Info, Briefcase, Newspaper, FileText, MessageSquare, 
   ChevronDown, ChevronRight, Search, Globe, Star, CreditCard, 
   Calendar, PhoneCall, Heart, ShieldCheck, HelpCircle, Import as Passport,
-  Umbrella, Landmark, CheckSquare, Edit, AlertCircle
+  Umbrella, Landmark, CheckSquare, Edit, AlertCircle, Luggage
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -26,6 +26,9 @@ interface HeaderProps {
   onNavigateToVisa?: () => void;
   onNavigateToInsurance?: () => void;
   onNavigateToGroupBookings?: () => void;
+  onNavigateToFAQ?: () => void;
+  onNavigateToBaggageInfo?: () => void;
+  onNavigateToTravelPolicies?: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ 
@@ -46,7 +49,10 @@ const Header: React.FC<HeaderProps> = ({
   onNavigateToPackages,
   onNavigateToVisa,
   onNavigateToInsurance,
-  onNavigateToGroupBookings
+  onNavigateToGroupBookings,
+  onNavigateToFAQ,
+  onNavigateToBaggageInfo,
+  onNavigateToTravelPolicies
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasNotifications, setHasNotifications] = useState(true);
@@ -217,21 +223,21 @@ const Header: React.FC<HeaderProps> = ({
           label: 'FAQs',
           icon: HelpCircle,
           description: 'Answers to common questions',
-          action: () => {/* FAQ specific action */}
+          action: onNavigateToFAQ
         },
         {
           id: 'baggage',
           label: 'Baggage Information',
-          icon: Briefcase,
+          icon: Luggage,
           description: 'Rules, allowances and services',
-          action: () => {/* Baggage info specific action */}
+          action: onNavigateToBaggageInfo
         },
         {
           id: 'policies',
           label: 'Travel Policies',
           icon: ShieldCheck,
           description: 'Guidelines and regulations',
-          action: () => {/* Policies specific action */}
+          action: onNavigateToTravelPolicies
         }
       ]
     }

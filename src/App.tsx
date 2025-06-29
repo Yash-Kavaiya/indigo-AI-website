@@ -25,6 +25,9 @@ import PackagesPage from './pages/PackagesPage';
 import VisaPage from './pages/VisaPage';
 import InsurancePage from './pages/InsurancePage';
 import GroupBookingsPage from './pages/GroupBookingsPage';
+import FAQPage from './pages/FAQPage';
+import BaggageInfoPage from './pages/BaggageInfoPage';
+import TravelPoliciesPage from './pages/TravelPoliciesPage';
 
 type CurrentPage = 
   | 'home' 
@@ -45,7 +48,10 @@ type CurrentPage =
   | 'packages'
   | 'visa'
   | 'insurance'
-  | 'groupBookings';
+  | 'groupBookings'
+  | 'faq'
+  | 'baggageInfo'
+  | 'travelPolicies';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<CurrentPage>('home');
@@ -124,6 +130,19 @@ function App() {
   if (currentPage === 'groupBookings') {
     return <GroupBookingsPage />;
   }
+  
+  // New information pages
+  if (currentPage === 'faq') {
+    return <FAQPage />;
+  }
+  
+  if (currentPage === 'baggageInfo') {
+    return <BaggageInfoPage />;
+  }
+  
+  if (currentPage === 'travelPolicies') {
+    return <TravelPoliciesPage />;
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -146,6 +165,9 @@ function App() {
         onNavigateToVisa={() => setCurrentPage('visa')}
         onNavigateToInsurance={() => setCurrentPage('insurance')}
         onNavigateToGroupBookings={() => setCurrentPage('groupBookings')}
+        onNavigateToFAQ={() => setCurrentPage('faq')}
+        onNavigateToBaggageInfo={() => setCurrentPage('baggageInfo')}
+        onNavigateToTravelPolicies={() => setCurrentPage('travelPolicies')}
       />
       <Hero />
       <SearchForm />
