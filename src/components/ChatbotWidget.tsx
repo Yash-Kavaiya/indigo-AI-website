@@ -738,6 +738,59 @@ const ChatbotWidget: React.FC = () => {
         {/* Media Preview */}
         {renderMediaPreview()}
 
+        {/* Media Tools Bar - More visible than the dropdown menu */}
+        <div className="bg-gray-100 border-t border-b border-gray-200 p-2 flex justify-center space-x-3">
+          <button 
+            className="p-2 rounded-lg hover:bg-gray-200 transition-colors text-primary-500 flex flex-col items-center"
+            onClick={() => setIsCameraOpen(true)}
+            title="Take a photo"
+          >
+            <Camera className="h-5 w-5" />
+            <span className="text-xs mt-1">Photo</span>
+          </button>
+          
+          <button 
+            className="p-2 rounded-lg hover:bg-gray-200 transition-colors text-success-500 flex flex-col items-center"
+            onClick={() => setIsVideoRecording(true)}
+            title="Record a video"
+          >
+            <Video className="h-5 w-5" />
+            <span className="text-xs mt-1">Video</span>
+          </button>
+          
+          <button 
+            className="p-2 rounded-lg hover:bg-gray-200 transition-colors text-secondary-500 flex flex-col items-center"
+            onClick={() => {
+              setIsScreenSharing(true);
+              shareScreen();
+            }}
+            title="Share your screen"
+          >
+            <MonitorUp className="h-5 w-5" />
+            <span className="text-xs mt-1">Screen</span>
+          </button>
+          
+          <button 
+            className="p-2 rounded-lg hover:bg-gray-200 transition-colors text-warning-500 flex flex-col items-center"
+            onClick={() => fileInputRef.current?.click()}
+            title="Upload a file"
+          >
+            <Upload className="h-5 w-5" />
+            <span className="text-xs mt-1">File</span>
+          </button>
+          
+          <button 
+            className={`p-2 rounded-lg hover:bg-gray-200 transition-colors flex flex-col items-center ${
+              isRecordingVoice ? 'text-error-500' : 'text-gray-600'
+            }`}
+            onClick={() => setIsRecordingVoice(!isRecordingVoice)}
+            title="Record voice"
+          >
+            <Mic className="h-5 w-5" />
+            <span className="text-xs mt-1">Voice</span>
+          </button>
+        </div>
+
         {/* Input Options Menu */}
         {showInputOptions && (
           <div className="absolute bottom-[4.5rem] left-4 bg-white rounded-xl shadow-elevation-3 p-2 z-10">
