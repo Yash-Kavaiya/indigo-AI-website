@@ -3,7 +3,8 @@ import {
   ArrowLeft, Search, FileText, Calendar, Plane, User, 
   CreditCard, Coffee, ArrowRight, Plus, Minus, Luggage,
   Shield, Clock, Wifi, AlertCircle, Edit, Trash2, Check,
-  ChevronRight, X, MapPin, CalendarClock, Download, Users
+  ChevronRight, X, MapPin, CalendarClock, Download, Users,
+  Phone, CheckSquare, Info
 } from 'lucide-react';
 
 const ManageBookingPage: React.FC = () => {
