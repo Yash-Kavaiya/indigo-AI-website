@@ -105,19 +105,23 @@ const Footer: React.FC = () => {
                 <div className="bg-gray-800 p-2 rounded-lg">
                   <Mail className="h-5 w-5" />
                 </div>
-                <span className="text-body1">hello@aeroai.com</span>
+                <a href="mailto:yash.kavaiya3@gmail.com" className="text-body1 hover:text-white transition-colors">
+                  yash.kavaiya3@gmail.com
+                </a>
               </div>
               <div className="flex items-center space-x-4 text-gray-300">
                 <div className="bg-gray-800 p-2 rounded-lg">
                   <Phone className="h-5 w-5" />
                 </div>
-                <span className="text-body1">+1 (555) 123-4567</span>
+                <a href="tel:+919265745362" className="text-body1 hover:text-white transition-colors">
+                  +91 9265745362
+                </a>
               </div>
               <div className="flex items-center space-x-4 text-gray-300">
                 <div className="bg-gray-800 p-2 rounded-lg">
                   <MapPin className="h-5 w-5" />
                 </div>
-                <span className="text-body1">San Francisco, CA</span>
+                <span className="text-body1">Pune, Hinjawadi Phase 1, 410057</span>
               </div>
             </div>
             
@@ -125,16 +129,16 @@ const Footer: React.FC = () => {
             <div>
               <h4 className="text-h6 font-semibold mb-4">Follow Us</h4>
               <div className="flex space-x-4">
-                <a href="#" className="bg-gray-800 p-3 rounded-xl hover:bg-primary-500 transition-colors duration-200 group">
+                <a href="https://x.com/Yash_Kavaiya_" target="_blank" rel="noopener noreferrer" className="bg-gray-800 p-3 rounded-xl hover:bg-primary-500 transition-colors duration-200 group">
                   <Twitter className="h-5 w-5 group-hover:scale-110 transition-transform duration-200" />
                 </a>
                 <a href="#" className="bg-gray-800 p-3 rounded-xl hover:bg-primary-500 transition-colors duration-200 group">
                   <Facebook className="h-5 w-5 group-hover:scale-110 transition-transform duration-200" />
                 </a>
-                <a href="#" className="bg-gray-800 p-3 rounded-xl hover:bg-primary-500 transition-colors duration-200 group">
+                <a href="https://www.instagram.com/gen_ai_guru" target="_blank" rel="noopener noreferrer" className="bg-gray-800 p-3 rounded-xl hover:bg-primary-500 transition-colors duration-200 group">
                   <Instagram className="h-5 w-5 group-hover:scale-110 transition-transform duration-200" />
                 </a>
-                <a href="#" className="bg-gray-800 p-3 rounded-xl hover:bg-primary-500 transition-colors duration-200 group">
+                <a href="https://www.linkedin.com/in/yashkavaiya" target="_blank" rel="noopener noreferrer" className="bg-gray-800 p-3 rounded-xl hover:bg-primary-500 transition-colors duration-200 group">
                   <Linkedin className="h-5 w-5 group-hover:scale-110 transition-transform duration-200" />
                 </a>
               </div>
