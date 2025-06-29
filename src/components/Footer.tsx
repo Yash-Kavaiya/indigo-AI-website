@@ -145,7 +145,7 @@ const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 mt-16 pt-8 flex flex-col lg:flex-row justify-between items-center">
           <p className="text-body1 text-gray-400">
-            © 2025 AeroAI. All rights reserved. Made with ❤️ using advanced AI.
+            © 2025 AeroAI. All rights reserved. Made by Yash Kavaiya
           </p>
           <div className="flex space-x-8 mt-6 lg:mt-0">
             <a href="#" className="text-body1 text-gray-400 hover:text-white transition-colors duration-200">Privacy Policy</a>
