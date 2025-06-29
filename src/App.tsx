@@ -15,8 +15,11 @@ import CareersPage from './pages/CareersPage';
 import PressPage from './pages/PressPage';
 import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
+import WebCheckInPage from './pages/WebCheckInPage';
+import FlightStatusPage from './pages/FlightStatusPage';
+import ManageBookingPage from './pages/ManageBookingPage';
 
-type CurrentPage = 'home' | 'loyalty' | 'booking' | 'destinations' | 'about' | 'careers' | 'press' | 'blog' | 'contact';
+type CurrentPage = 'home' | 'loyalty' | 'booking' | 'destinations' | 'about' | 'careers' | 'press' | 'blog' | 'contact' | 'webCheckIn' | 'flightStatus' | 'manageBooking';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<CurrentPage>('home');
@@ -53,6 +56,18 @@ function App() {
     return <ContactPage onNavigateHome={() => setCurrentPage('home')} />;
   }
 
+  if (currentPage === 'webCheckIn') {
+    return <WebCheckInPage />;
+  }
+
+  if (currentPage === 'flightStatus') {
+    return <FlightStatusPage />;
+  }
+
+  if (currentPage === 'manageBooking') {
+    return <ManageBookingPage />;
+  }
+
   return (
     <div className="min-h-screen bg-white">
       <Header 
@@ -64,6 +79,9 @@ function App() {
         onNavigateToPress={() => setCurrentPage('press')}
         onNavigateToBlog={() => setCurrentPage('blog')}
         onNavigateToContact={() => setCurrentPage('contact')}
+        onNavigateToWebCheckIn={() => setCurrentPage('webCheckIn')}
+        onNavigateToFlightStatus={() => setCurrentPage('flightStatus')}
+        onNavigateToManageBooking={() => setCurrentPage('manageBooking')}
       />
       <Hero />
       <SearchForm />

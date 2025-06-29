@@ -4,7 +4,7 @@ import {
   MapPin, Info, Briefcase, Newspaper, FileText, MessageSquare, 
   ChevronDown, ChevronRight, Search, Globe, Star, CreditCard, 
   Calendar, PhoneCall, Heart, ShieldCheck, HelpCircle, Import as Passport,
-  Umbrella
+  Umbrella, Landmark, CheckSquare, Edit, AlertCircle
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -16,6 +16,9 @@ interface HeaderProps {
   onNavigateToPress?: () => void;
   onNavigateToBlog?: () => void;
   onNavigateToContact?: () => void;
+  onNavigateToWebCheckIn?: () => void;
+  onNavigateToFlightStatus?: () => void;
+  onNavigateToManageBooking?: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ 
@@ -26,7 +29,10 @@ const Header: React.FC<HeaderProps> = ({
   onNavigateToCareers,
   onNavigateToPress,
   onNavigateToBlog,
-  onNavigateToContact
+  onNavigateToContact,
+  onNavigateToWebCheckIn,
+  onNavigateToFlightStatus,
+  onNavigateToManageBooking
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasNotifications, setHasNotifications] = useState(true);
@@ -122,21 +128,21 @@ const Header: React.FC<HeaderProps> = ({
           label: 'Web Check-In',
           icon: Calendar,
           description: 'Skip the line with easy online check-in',
-          action: () => {/* Check-in specific action */}
+          action: onNavigateToWebCheckIn
         },
         {
           id: 'flightStatus',
           label: 'Flight Status',
           icon: Plane,
           description: 'Real-time updates on all IndiGo flights',
-          action: () => {/* Flight status specific action */}
+          action: onNavigateToFlightStatus
         },
         {
           id: 'manage',
           label: 'Manage Booking',
           icon: FileText,
           description: 'Change, upgrade or cancel your booking',
-          action: () => {/* Manage booking specific action */}
+          action: onNavigateToManageBooking
         }
       ]
     },
@@ -217,6 +223,27 @@ const Header: React.FC<HeaderProps> = ({
     }
   ];
 
+  const quickActions = [
+    {
+      id: 'webCheckIn',
+      label: 'Web Check-In',
+      icon: CheckSquare,
+      action: onNavigateToWebCheckIn
+    },
+    {
+      id: 'flightStatus',
+      label: 'Flight Status',
+      icon: Plane,
+      action: onNavigateToFlightStatus
+    },
+    {
+      id: 'manageBooking',
+      label: 'Manage Booking',
+      icon: Edit,
+      action: onNavigateToManageBooking
+    }
+  ];
+
   // Handle scroll effect for sticky header
   useEffect(() => {
     const handleScroll = () => {
@@ -292,6 +319,20 @@ const Header: React.FC<HeaderProps> = ({
             <span className="text-h5 font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
               IndiGo
             </span>
+          </div>
+
+          {/* Quick Action Buttons */}
+          <div className="hidden lg:flex items-center space-x-4 mx-6">
+            {quickActions.map(action => (
+              <button
+                key={action.id}
+                onClick={action.action}
+                className="flex items-center space-x-1.5 text-sm text-gray-700 hover:text-primary-600 transition-colors px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200"
+              >
+                <action.icon className="h-3.5 w-3.5" />
+                <span>{action.label}</span>
+              </button>
+            ))}
           </div>
 
           {/* Desktop Navigation */}
@@ -473,6 +514,23 @@ const Header: React.FC<HeaderProps> = ({
             className="xl:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-elevation-2 py-4 animate-slide-up max-h-[80vh] overflow-y-auto"
           >
             <nav className="flex flex-col space-y-1 px-4" aria-label="Mobile Navigation">
+              {/* Quick Actions on Mobile */}
+              <div className="grid grid-cols-3 gap-2 mb-4">
+                {quickActions.map(action => (
+                  <button
+                    key={action.id}
+                    onClick={() => {
+                      if (action.action) action.action();
+                      setIsMenuOpen(false);
+                    }}
+                    className="flex flex-col items-center p-3 space-y-1 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
+                  >
+                    <action.icon className="h-5 w-5 text-primary-600" />
+                    <span className="text-xs">{action.label}</span>
+                  </button>
+                ))}
+              </div>
+              
               {navigationItems.map(item => (
                 <div key={item.id}>
                   {item.submenu ? (
