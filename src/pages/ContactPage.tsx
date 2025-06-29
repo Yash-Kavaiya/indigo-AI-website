@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { 
   ArrowLeft, MessageSquare, Mail, Phone, MapPin, 
   Clock, Globe, Send, ArrowRight, HelpCircle, 
-  Plane, Hotel, Car, CreditCard, User, Shield
+  Plane, Hotel, Car, CreditCard, User, Shield, 
+  Linkedin, GitHub, Instagram, Twitter
 } from 'lucide-react';
 
 interface ContactPageProps {
@@ -35,6 +36,14 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigateHome }) => {
 
   const officeLocations: OfficeLocation[] = [
     {
+      city: 'Pune (Main Office)',
+      address: 'Hinjawadi Phase 1, Pune - 410057, Maharashtra, India',
+      phone: '+91 9265745362',
+      email: 'yash.kavaiya3@gmail.com',
+      hours: 'Monday-Friday: 9:00 AM - 6:00 PM',
+      mapUrl: 'https://maps.google.com'
+    },
+    {
       city: 'Gurgaon (Headquarters)',
       address: 'Level 1-5, Tower C, Global Business Park, Mehrauli-Gurgaon Road, Gurgaon - 122 002, Haryana, India',
       phone: '+91 124 435 2500',
@@ -47,14 +56,6 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigateHome }) => {
       address: 'Ceejay House, Level 11, Plot F, Shivsagar Estate, Dr. Annie Besant Road, Worli, Mumbai - 400 018, Maharashtra, India',
       phone: '+91 22 6685 4000',
       email: 'mumbai@indigo.com',
-      hours: 'Monday-Friday: 9:00 AM - 6:00 PM',
-      mapUrl: 'https://maps.google.com'
-    },
-    {
-      city: 'Bangalore',
-      address: 'Prestige Blue Chip, No. 9, Hosur Road, Richmond Road, Bangalore - 560 025, Karnataka, India',
-      phone: '+91 80 4343 4500',
-      email: 'bangalore@indigo.com',
       hours: 'Monday-Friday: 9:00 AM - 6:00 PM',
       mapUrl: 'https://maps.google.com'
     }
@@ -325,10 +326,10 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigateHome }) => {
                       <div>
                         <h4 className="text-h6 text-primary mb-2">Social Media</h4>
                         <div className="flex space-x-4 mt-2">
-                          <a href="#" className="text-primary-500 hover:text-primary-600 transition-colors">Twitter</a>
-                          <a href="#" className="text-primary-500 hover:text-primary-600 transition-colors">Facebook</a>
-                          <a href="#" className="text-primary-500 hover:text-primary-600 transition-colors">Instagram</a>
-                          <a href="#" className="text-primary-500 hover:text-primary-600 transition-colors">LinkedIn</a>
+                          <a href="https://www.linkedin.com/in/yashkavaiya" target="_blank" rel="noopener noreferrer" className="text-primary-500 hover:text-primary-600 transition-colors">LinkedIn</a>
+                          <a href="https://www.github.com/Yash-Kavaiya" target="_blank" rel="noopener noreferrer" className="text-primary-500 hover:text-primary-600 transition-colors">GitHub</a>
+                          <a href="https://www.instagram.com/gen_ai_guru" target="_blank" rel="noopener noreferrer" className="text-primary-500 hover:text-primary-600 transition-colors">Instagram</a>
+                          <a href="https://x.com/Yash_Kavaiya_" target="_blank" rel="noopener noreferrer" className="text-primary-500 hover:text-primary-600 transition-colors">Twitter</a>
                         </div>
                       </div>
                     </div>
@@ -395,6 +396,66 @@ const ContactPage: React.FC<ContactPageProps> = ({ onNavigateHome }) => {
                     </a>
                   </div>
                 ))}
+              </div>
+            </div>
+            
+            {/* Personal Contact Section */}
+            <div className="mb-20">
+              <div className="text-center mb-16">
+                <h2 className="text-h2 text-primary mb-6">Personal Contact</h2>
+                <p className="text-h4 font-normal text-secondary max-w-3xl mx-auto">
+                  Reach out directly to our representative
+                </p>
+              </div>
+              
+              <div className="card-elevated p-8 hover:scale-105 transition-all duration-300 max-w-2xl mx-auto">
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="w-40 h-40 rounded-full overflow-hidden bg-primary-100 flex items-center justify-center">
+                    <User className="h-20 w-20 text-primary-500" />
+                  </div>
+                  
+                  <div className="flex-1 space-y-4">
+                    <h3 className="text-h4 text-primary text-center md:text-left">Yash Kavaiya</h3>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3">
+                        <Mail className="h-5 w-5 text-secondary-600" />
+                        <a href="mailto:yash.kavaiya3@gmail.com" className="text-body1 text-secondary hover:text-primary-500 transition-colors">
+                          yash.kavaiya3@gmail.com
+                        </a>
+                      </div>
+                      
+                      <div className="flex items-center space-x-3">
+                        <Phone className="h-5 w-5 text-secondary-600" />
+                        <a href="tel:+919265745362" className="text-body1 text-secondary hover:text-primary-500 transition-colors">
+                          +91 9265745362
+                        </a>
+                      </div>
+                      
+                      <div className="flex items-center space-x-3">
+                        <MapPin className="h-5 w-5 text-secondary-600" />
+                        <span className="text-body1 text-secondary">
+                          Pune, Hinjawadi Phase 1, 410057
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex justify-center md:justify-start space-x-4 pt-2">
+                      <a href="https://www.linkedin.com/in/yashkavaiya" target="_blank" rel="noopener noreferrer" className="bg-primary-100 p-3 rounded-full text-primary-600 hover:bg-primary-200 transition-colors">
+                        <Linkedin className="h-5 w-5" />
+                      </a>
+                      <a href="https://www.github.com/Yash-Kavaiya" target="_blank" rel="noopener noreferrer" className="bg-primary-100 p-3 rounded-full text-primary-600 hover:bg-primary-200 transition-colors">
+                        <GitHub className="h-5 w-5" />
+                      </a>
+                      <a href="https://www.instagram.com/gen_ai_guru" target="_blank" rel="noopener noreferrer" className="bg-primary-100 p-3 rounded-full text-primary-600 hover:bg-primary-200 transition-colors">
+                        <Instagram className="h-5 w-5" />
+                      </a>
+                      <a href="https://x.com/Yash_Kavaiya_" target="_blank" rel="noopener noreferrer" className="bg-primary-100 p-3 rounded-full text-primary-600 hover:bg-primary-200 transition-colors">
+                        <Twitter className="h-5 w-5" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </>
