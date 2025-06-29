@@ -7,6 +7,12 @@ import {
 } from 'lucide-react';
 
 const FlightStatusPage: React.FC = () => {
+  // Move getTodayDate function definition to the top before useState calls
+  const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  };
+
   const [searchType, setSearchType] = useState<'flight' | 'route'>('flight');
   const [flightNumber, setFlightNumber] = useState('');
   const [origin, setOrigin] = useState('');
@@ -114,11 +120,6 @@ const FlightStatusPage: React.FC = () => {
       startRefreshCountdown();
     }
   }, [flightData, autoRefresh]);
-
-  const getTodayDate = () => {
-    const today = new Date();
-    return today.toISOString().split('T')[0];
-  };
 
   const startRefreshCountdown = () => {
     // Clear any existing interval
@@ -950,7 +951,7 @@ const FlightStatusPage: React.FC = () => {
                 
                 <div className="flex items-start space-x-3">
                   <div className="bg-error-100 p-2 rounded-lg">
-                    <X className="h-5 w-5 text-error-600" />
+                    <AlertCircle className="h-5 w-5 text-error-600" />
                   </div>
                   <div>
                     <p className="text-body2 font-medium text-error-700">Cancelled</p>
