@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Search, MapPin, Calendar, User, Sparkles, Bot, ArrowRight, DollarSign, Globe } from 'lucide-react';
 
 const SearchForm: React.FC = () => {
@@ -15,6 +15,9 @@ const SearchForm: React.FC = () => {
   const [travelDescription, setTravelDescription] = useState('');
   const [flexibleDates, setFlexibleDates] = useState('');
   const [budgetRange, setBudgetRange] = useState('');
+  const [focusReturnDate, setFocusReturnDate] = useState(false);
+  
+  const returnDateInputRef = useRef<HTMLInputElement>(null);
 
   const currencies = [
     { code: 'INR', symbol: '₹', name: 'Indian Rupee' },
@@ -70,6 +73,19 @@ const SearchForm: React.FC = () => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     return tomorrow.toISOString().split('T')[0];
+  };
+
+  useEffect(() => {
+    // Focus return date input when departure date is selected
+    if (focusReturnDate && returnDateInputRef.current) {
+      returnDateInputRef.current.focus();
+      setFocusReturnDate(false);
+    }
+  }, [focusReturnDate]);
+
+  const handleDepartureDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchData({...searchData, departure: e.target.value});
+    setFocusReturnDate(true);
   };
 
   return (
@@ -255,7 +271,7 @@ const SearchForm: React.FC = () => {
                       id="departure-date"
                       min={getTodayDate()}
                       value={searchData.departure}
-                      onChange={(e) => setSearchData({...searchData, departure: e.target.value})}
+                      onChange={handleDepartureDateChange}
                     />
                     <label htmlFor="departure-date">Departure Date</label>
                     <div className="absolute right-4 top-3">
@@ -271,6 +287,7 @@ const SearchForm: React.FC = () => {
                       min={searchData.departure || getTomorrowDate()}
                       value={searchData.return}
                       onChange={(e) => setSearchData({...searchData, return: e.target.value})}
+                      ref={returnDateInputRef}
                     />
                     <label htmlFor="return-date">Return Date</label>
                     <div className="absolute right-4 top-3">
