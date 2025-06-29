@@ -18,12 +18,39 @@ import ContactPage from './pages/ContactPage';
 import WebCheckInPage from './pages/WebCheckInPage';
 import FlightStatusPage from './pages/FlightStatusPage';
 import ManageBookingPage from './pages/ManageBookingPage';
+import FlightsPage from './pages/FlightsPage';
+import HotelsPage from './pages/HotelsPage';
+import CabsPage from './pages/CabsPage';
+import PackagesPage from './pages/PackagesPage';
+import VisaPage from './pages/VisaPage';
+import InsurancePage from './pages/InsurancePage';
+import GroupBookingsPage from './pages/GroupBookingsPage';
 
-type CurrentPage = 'home' | 'loyalty' | 'booking' | 'destinations' | 'about' | 'careers' | 'press' | 'blog' | 'contact' | 'webCheckIn' | 'flightStatus' | 'manageBooking';
+type CurrentPage = 
+  | 'home' 
+  | 'loyalty' 
+  | 'booking' 
+  | 'destinations' 
+  | 'about' 
+  | 'careers' 
+  | 'press' 
+  | 'blog' 
+  | 'contact' 
+  | 'webCheckIn' 
+  | 'flightStatus' 
+  | 'manageBooking'
+  | 'flights'
+  | 'hotels'
+  | 'cabs'
+  | 'packages'
+  | 'visa'
+  | 'insurance'
+  | 'groupBookings';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<CurrentPage>('home');
 
+  // Legacy/About pages
   if (currentPage === 'loyalty') {
     return <LoyaltyProgramPage />;
   }
@@ -56,6 +83,7 @@ function App() {
     return <ContactPage onNavigateHome={() => setCurrentPage('home')} />;
   }
 
+  // Service pages
   if (currentPage === 'webCheckIn') {
     return <WebCheckInPage />;
   }
@@ -66,6 +94,35 @@ function App() {
 
   if (currentPage === 'manageBooking') {
     return <ManageBookingPage />;
+  }
+
+  // New dedicated travel service pages
+  if (currentPage === 'flights') {
+    return <FlightsPage />;
+  }
+
+  if (currentPage === 'hotels') {
+    return <HotelsPage />;
+  }
+
+  if (currentPage === 'cabs') {
+    return <CabsPage />;
+  }
+
+  if (currentPage === 'packages') {
+    return <PackagesPage />;
+  }
+
+  if (currentPage === 'visa') {
+    return <VisaPage />;
+  }
+
+  if (currentPage === 'insurance') {
+    return <InsurancePage />;
+  }
+
+  if (currentPage === 'groupBookings') {
+    return <GroupBookingsPage />;
   }
 
   return (
@@ -82,6 +139,13 @@ function App() {
         onNavigateToWebCheckIn={() => setCurrentPage('webCheckIn')}
         onNavigateToFlightStatus={() => setCurrentPage('flightStatus')}
         onNavigateToManageBooking={() => setCurrentPage('manageBooking')}
+        onNavigateToFlights={() => setCurrentPage('flights')}
+        onNavigateToHotels={() => setCurrentPage('hotels')}
+        onNavigateToCabs={() => setCurrentPage('cabs')}
+        onNavigateToPackages={() => setCurrentPage('packages')}
+        onNavigateToVisa={() => setCurrentPage('visa')}
+        onNavigateToInsurance={() => setCurrentPage('insurance')}
+        onNavigateToGroupBookings={() => setCurrentPage('groupBookings')}
       />
       <Hero />
       <SearchForm />

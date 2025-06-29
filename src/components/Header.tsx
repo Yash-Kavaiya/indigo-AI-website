@@ -19,6 +19,13 @@ interface HeaderProps {
   onNavigateToWebCheckIn?: () => void;
   onNavigateToFlightStatus?: () => void;
   onNavigateToManageBooking?: () => void;
+  onNavigateToFlights?: () => void;
+  onNavigateToHotels?: () => void;
+  onNavigateToCabs?: () => void;
+  onNavigateToPackages?: () => void;
+  onNavigateToVisa?: () => void;
+  onNavigateToInsurance?: () => void;
+  onNavigateToGroupBookings?: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ 
@@ -32,7 +39,14 @@ const Header: React.FC<HeaderProps> = ({
   onNavigateToContact,
   onNavigateToWebCheckIn,
   onNavigateToFlightStatus,
-  onNavigateToManageBooking
+  onNavigateToManageBooking,
+  onNavigateToFlights,
+  onNavigateToHotels,
+  onNavigateToCabs,
+  onNavigateToPackages,
+  onNavigateToVisa,
+  onNavigateToInsurance,
+  onNavigateToGroupBookings
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasNotifications, setHasNotifications] = useState(true);
@@ -60,49 +74,49 @@ const Header: React.FC<HeaderProps> = ({
           label: 'Flights',
           icon: Plane,
           description: 'Domestic & International flights at best prices',
-          action: onNavigateToBooking
+          action: onNavigateToFlights
         },
         {
           id: 'hotels',
           label: 'Hotels',
           icon: Hotel,
           description: 'Find the perfect stay from budget to luxury',
-          action: () => {/* Hotel booking specific action */}
+          action: onNavigateToHotels
         },
         {
           id: 'cabs',
           label: 'Cabs & Transport',
           icon: Car,
           description: 'Airport transfers and city travel',
-          action: () => {/* Cab booking specific action */}
+          action: onNavigateToCabs
         },
         {
           id: 'packages',
           label: 'Holiday Packages',
           icon: Heart,
           description: 'Complete travel packages with flights & hotels',
-          action: () => {/* Packages specific action */}
+          action: onNavigateToPackages
         },
         {
           id: 'visa',
           label: 'Visa Services',
           icon: Passport,
           description: 'Hassle-free visa assistance for international travel',
-          action: () => {/* Visa services specific action */}
+          action: onNavigateToVisa
         },
         {
           id: 'insurance',
           label: 'Travel Insurance',
           icon: Umbrella,
           description: 'Comprehensive coverage for worry-free travel',
-          action: () => {/* Insurance specific action */}
+          action: onNavigateToInsurance
         },
         {
           id: 'groups',
           label: 'Group Bookings',
           icon: Users,
           description: 'Special rates for 10+ travelers',
-          action: () => {/* Group booking specific action */}
+          action: onNavigateToGroupBookings
         }
       ]
     },
@@ -126,7 +140,7 @@ const Header: React.FC<HeaderProps> = ({
         {
           id: 'checkIn',
           label: 'Web Check-In',
-          icon: Calendar,
+          icon: CheckSquare,
           description: 'Skip the line with easy online check-in',
           action: onNavigateToWebCheckIn
         },
