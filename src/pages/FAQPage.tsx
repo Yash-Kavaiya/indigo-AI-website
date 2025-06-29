@@ -26,13 +26,13 @@ const FAQPage: React.FC = () => {
     {
       id: '1',
       question: 'How can I book a flight on your website?',
-      answer: 'Booking a flight on our website is easy! Start by entering your departure city, destination, travel dates, and number of passengers in the search form. Browse the available flights, select your preferred option, and proceed to checkout. You can pay using credit/debit cards, net banking, or digital wallets. Once payment is complete, you'll receive a confirmation email with your e-ticket.',
+      answer: 'Booking a flight on our website is easy! Start by entering your departure city, destination, travel dates, and number of passengers in the search form. Browse the available flights, select your preferred option, and proceed to checkout. You can pay using credit/debit cards, net banking, or digital wallets. Once payment is complete, you\'ll receive a confirmation email with your e-ticket.',
       category: 'booking'
     },
     {
       id: '2',
       question: 'What is your cancellation policy?',
-      answer: 'Our cancellation policy depends on the fare type you've booked. For refundable fares, cancellations made at least 24 hours before departure incur a fee of ₹3,000 per passenger for domestic flights and ₹5,000 for international flights. Non-refundable fares allow cancellation with only taxes refunded. Cancellations within 24 hours of departure may result in higher fees. You can view the specific policy for your booking in the fare rules section of your booking confirmation.',
+      answer: 'Our cancellation policy depends on the fare type you\'ve booked. For refundable fares, cancellations made at least 24 hours before departure incur a fee of ₹3,000 per passenger for domestic flights and ₹5,000 for international flights. Non-refundable fares allow cancellation with only taxes refunded. Cancellations within 24 hours of departure may result in higher fees. You can view the specific policy for your booking in the fare rules section of your booking confirmation.',
       category: 'cancellation'
     },
     {
@@ -62,13 +62,13 @@ const FAQPage: React.FC = () => {
     {
       id: '7',
       question: 'How can I request special meals?',
-      answer: 'Special meals can be requested during the booking process or later through the "Manage Booking" section. We offer various options including vegetarian, Jain, vegan, diabetic, gluten-free, kosher, and children's meals. For international flights, special meal requests should be made at least 24 hours before departure. For domestic flights with meal service, requests should be made at least 12 hours prior to departure. Not all special meals are available on short domestic flights without regular meal service.',
+      answer: 'Special meals can be requested during the booking process or later through the "Manage Booking" section. We offer various options including vegetarian, Jain, vegan, diabetic, gluten-free, kosher, and children\'s meals. For international flights, special meal requests should be made at least 24 hours before departure. For domestic flights with meal service, requests should be made at least 12 hours prior to departure. Not all special meals are available on short domestic flights without regular meal service.',
       category: 'services'
     },
     {
       id: '8',
       question: 'What is the refund process and how long does it take?',
-      answer: 'When you cancel an eligible booking, refunds are processed automatically to your original payment method. The processing time depends on your payment method: (1) Credit Cards: 7-14 business days (2) Debit Cards: 7-14 business days (3) Net Banking: 5-7 business days (4) Digital Wallets: 3-5 business days. Please note that while we initiate refunds promptly, the actual credit to your account is subject to your bank or payment provider's processing times. You can check your refund status in the "Manage Booking" section using your booking reference.',
+      answer: 'When you cancel an eligible booking, refunds are processed automatically to your original payment method. The processing time depends on your payment method: (1) Credit Cards: 7-14 business days (2) Debit Cards: 7-14 business days (3) Net Banking: 5-7 business days (4) Digital Wallets: 3-5 business days. Please note that while we initiate refunds promptly, the actual credit to your account is subject to your bank or payment provider\'s processing times. You can check your refund status in the "Manage Booking\" section using your booking reference.',
       category: 'cancellation'
     },
     {
