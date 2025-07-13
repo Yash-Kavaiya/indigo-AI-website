@@ -5,7 +5,11 @@ import {
   Shield, Coffee, Wifi, PlusCircle, MinusCircle, X
 } from 'lucide-react';
 
-const WebCheckInPage: React.FC = () => {
+interface WebCheckInPageProps {
+  onNavigateHome?: () => void;
+}
+
+const WebCheckInPage: React.FC<WebCheckInPageProps> = ({ onNavigateHome }) => {
   const [step, setStep] = useState(1);
   const [bookingReference, setBookingReference] = useState('');
   const [lastName, setLastName] = useState('');
@@ -1084,7 +1088,10 @@ const WebCheckInPage: React.FC = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-4">
-            <button className="bg-white p-2 rounded-full shadow-md">
+            <button 
+              onClick={onNavigateHome}
+              className="bg-white p-2 rounded-full shadow-md hover:shadow-lg transition-all duration-200"
+            >
               <ArrowLeft className="h-6 w-6 text-primary-500" />
             </button>
             <h1 className="text-h2 text-primary">Web Check-In</h1>

@@ -6,7 +6,11 @@ import {
   Info, Phone, CalendarClock, CheckSquare
 } from 'lucide-react';
 
-const FlightStatusPage: React.FC = () => {
+interface FlightStatusPageProps {
+  onNavigateHome?: () => void;
+}
+
+const FlightStatusPage: React.FC<FlightStatusPageProps> = ({ onNavigateHome }) => {
   // Move getTodayDate function definition to the top before useState calls
   const getTodayDate = () => {
     const today = new Date();
@@ -251,7 +255,10 @@ const FlightStatusPage: React.FC = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-4">
-            <button className="bg-white p-2 rounded-full shadow-md">
+            <button 
+              onClick={onNavigateHome}
+              className="bg-white p-2 rounded-full shadow-md hover:shadow-lg transition-all duration-200"
+            >
               <ArrowLeft className="h-6 w-6 text-primary-500" />
             </button>
             <h1 className="text-h2 text-primary">Flight Status</h1>

@@ -7,7 +7,11 @@ import {
   Phone, CheckSquare, Info
 } from 'lucide-react';
 
-const ManageBookingPage: React.FC = () => {
+interface ManageBookingPageProps {
+  onNavigateHome?: () => void;
+}
+
+const ManageBookingPage: React.FC<ManageBookingPageProps> = ({ onNavigateHome }) => {
   const [bookingReference, setBookingReference] = useState('');
   const [lastName, setLastName] = useState('');
   const [isSearching, setIsSearching] = useState(false);
@@ -1096,7 +1100,10 @@ const ManageBookingPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex items-center space-x-4 mb-12">
-          <button className="bg-white p-2 rounded-full shadow-md">
+          <button 
+            onClick={onNavigateHome}
+            className="bg-white p-2 rounded-full shadow-md hover:shadow-lg transition-all duration-200"
+          >
             <ArrowLeft className="h-6 w-6 text-primary-500" />
           </button>
           <h1 className="text-h2 text-primary">Manage Booking</h1>

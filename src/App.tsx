@@ -91,15 +91,15 @@ function App() {
 
   // Service pages
   if (currentPage === 'webCheckIn') {
-    return <WebCheckInPage />;
+    return <WebCheckInPage onNavigateHome={() => setCurrentPage('home')} />;
   }
 
   if (currentPage === 'flightStatus') {
-    return <FlightStatusPage />;
+    return <FlightStatusPage onNavigateHome={() => setCurrentPage('home')} />;
   }
 
   if (currentPage === 'manageBooking') {
-    return <ManageBookingPage />;
+    return <ManageBookingPage onNavigateHome={() => setCurrentPage('home')} />;
   }
 
   // New dedicated travel service pages
@@ -169,11 +169,14 @@ function App() {
         onNavigateToBaggageInfo={() => setCurrentPage('baggageInfo')}
         onNavigateToTravelPolicies={() => setCurrentPage('travelPolicies')}
       />
-      <Hero />
-      <SearchForm />
-      <AIFeatures />
-      <SmartRecommendations />
-      <TravelAssistant />
+      {/* Main content area with top padding to account for fixed header */}
+      <main className="pt-20">
+        <Hero />
+        <SearchForm />
+        <AIFeatures />
+        <SmartRecommendations />
+        <TravelAssistant />
+      </main>
       <Footer />
       <ChatbotWidget />
     </div>

@@ -3,7 +3,7 @@ import { Bot, Sparkles, Zap, Heart, ArrowRight, Play } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-50 via-surface-secondary to-secondary-50">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-50 via-surface-secondary to-secondary-50 mb-16">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute inset-0" style={{
